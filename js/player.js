@@ -1,5 +1,8 @@
 import { saveToLocalStorage } from "./save-to-local-storage.js";
+
+
 const player = document.querySelector('.audio-player__player'); // контейнер плеера
+const playlist = document.querySelector('.playlist__list');
 
 const playButton = document.querySelector('.audio-player__control'); // кнопка воспроизведения трека
 const previousButton = document.querySelector('.audio-player__previous-song'); // кнопка воспроизведения предыдущего трека
@@ -17,6 +20,14 @@ const pauseButton = document.querySelector('.audio-player__control-pause'); // �
 const songStartTime = document.querySelector('.audio-player__time-start'); // текущее время песни
 const songEndTime = document.querySelector('.audio-player__time-end'); // длительность песни
 
+const volume = document.querySelector('.audio-player__volume-input'); //инпут громкости
+const wavesContainer = document.querySelector('.audio-player__waves');
+
+const wavesurfer = WaveSurfer.create({
+  container: wavesContainer,
+  waveColor: '#4F4A85',
+  progressColor: '#383351',
+})
 
 // Названия песен
 const songsName = ['Iamalex - Meadow (feat. Azula & Dayle)',
@@ -34,9 +45,7 @@ if (localStorage.getItem('currentSong')) {
   songIndex = 0;
 }
 
-
-
-// иконка по умолчанию
+// иконка в плеере по умолчанию
 playIcon.style.display = 'block';
 pauseButton.style.display = 'none';
 
@@ -58,33 +67,37 @@ const updateTime = () => {
   songEndTime.textContent = time; // отображаем на странице
 }
 
-window.addEventListener('load', updateTime);
-
 const loadSong = (songsName) => {
   nameSong.innerHTML = songsName; // записывам название текущей песни
   audio.src = `./assets/audio/${songsName}.mp3`; // добавляем путь к текущей песне
+  wavesurfer.load(`./assets/audio/${songsName}.mp3`); // добавляем аудиозапись для звуковой волны
 }
 
-loadSong(songsName[songIndex]);
+// при загрузке страницы для текущей аудиозаписи: 1) отобразим длительность 2) отобразим название 3) укажем путь 
+window.addEventListener('load', updateTime);
+loadSong(songsName[songIndex]); 
 
-// play
+// Проигрывать 
 const playSong = () => {
   audio.play(); 
   player.classList.add('play');
+  wavesurfer.play();
 }
 
-// pause
+// Пауза
 const pauseySong = () => {
   audio.pause(); 
   player.classList.remove('play');
+  wavesurfer.pause();
 }
 
-playButton.addEventListener('click', () => {
+playButton.addEventListener('click', () => { // вешаем обработчик клика на кнопку воспроизвести/пауза
   const isPlaying = player.classList.contains('play');
   if (isPlaying) {
     pauseySong();
     playIcon.style.display = 'block';
     pauseButton.style.display = 'none';
+
   } else {
     playSong();
     playIcon.style.display = 'none';
@@ -95,14 +108,17 @@ playButton.addEventListener('click', () => {
 // следующая песня
 const playNextSong = () => {
   songIndex++;
-  saveToLocalStorage('currentSong', songIndex); // сохраняем в localSorage индекс песни, на которой пользователь остановил прослушивание
 
-  if (songIndex > songsName.length - 1) {
+  if (songIndex > songsName.length - 1 || songIndex < 0) {
     songIndex = 0;
   }
 
+  saveToLocalStorage('currentSong', songIndex); // сохраняем в localSorage индекс песни, на которой пользователь остановил прослушивание
+
   loadSong(songsName[songIndex]);
-  playSong();
+  playIcon.style.display = 'block';
+  pauseButton.style.display = 'none';
+
 }
 
 nextButton.addEventListener('click', playNextSong);
@@ -110,14 +126,16 @@ nextButton.addEventListener('click', playNextSong);
 // предыдущая песня
 const playPreviousSong = () => {
   songIndex--;
-  saveToLocalStorage('currentSong', songIndex); // сохраняем в localSorage индекс песни, на которой пользователь остановил прослушивание
 
-  if (songIndex < 0) {
+  if (songIndex < 0 || songIndex >= songsName.length - 1) {
     songIndex = songsName.length - 1;
   }
+  
+  saveToLocalStorage('currentSong', songIndex); // сохраняем в localSorage индекс песни, на которой пользователь остановил прослушивание
 
   loadSong(songsName[songIndex]);
-  playSong();
+  playIcon.style.display = 'block';
+  pauseButton.style.display = 'none';
 }
 
 previousButton.addEventListener('click', playPreviousSong);
@@ -139,13 +157,43 @@ const setProgress = (evt) => {
   const width = progressLine.clientWidth; // длина блока с прогрессом
   const click = evt .offsetX; // место, куда кликнули
   const duration = audio.duration; // длина трека
-  
+
   audio.currentTime = (click / width) * duration;
 }
 
 progressLine.addEventListener('click', setProgress);
 
 // включаем следующую песню, если закончилась предыдущая
-audio.addEventListener('ended', playNextSong)
+audio.addEventListener('ended', () => {
+  playNextSong();
+  progress.style.width = 0;
+});
+
+// выбор песни в плейлисте
+const chooseSong = (evt) => {
+  if (evt.target.classList.contains('song__name') || evt.target.classList.contains('song__play-button') || evt.target.classList.contains('song__play-icon')) {
+    const currentNameSong = evt.target.closest('.song').querySelector('.song__name').textContent;
+    songIndex = songsName.indexOf(currentNameSong);
+    loadSong(songsName[songIndex]);
+  }
+}
+
+playlist.addEventListener('click', chooseSong);
+
+//громкость
+const changeVolume = () => {
+  audio.volume = volumeSlider.value;
+}
+
+volume.addEventListener('input', changeVolume)
+
+// Добавляем обработчики событий для управления воспроизведением
+audio.addEventListener('seeking', () => {
+  wavesurfer.seekTo(audio.currentTime / audio.duration);
+});
+
+audio.addEventListener('ended', () => {
+  wavesurfer.stop();
+});
 
 export {songsName}

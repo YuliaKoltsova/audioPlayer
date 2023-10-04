@@ -95,7 +95,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 200px
+  width: 250px
 }
 
 .song__name:hover,
@@ -171,6 +171,10 @@
   column-gap: 20px;
 }
 
+.audio-player__player {
+  margin-bottom: 20px;
+}
+
 /* Кнопки */
 .button {
   border: none;
@@ -190,4 +194,53 @@
 
 .icon:active {
   fill: #BC4603;
+}
+
+
+/* Громкость */
+.audio-player__volume {
+  text-align: center;
+}
+
+/* Стилизация ползунка громкости */
+input[type=range]  {
+  width: 200px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  overflow: hidden;
+  height: 7px;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  height: 7px;
+  background-color: #ffffff;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  background: #BC4603;
+  cursor: pointer;
+  width:15px;
+  height: 15px;
+  -webkit-appearance: none;
+  margin-top: -4px;
+  box-shadow: -200px  0 0 200px  #E7891A;
+
+}
+
+input[type=range]::-moz-range-track {
+    height: 7px;
+    background-color: #ffffff;
+}
+
+
+input[type=range]::-moz-range-thumb {
+  background: #ecf0f1;
+  cursor: pointer;
+  height: 7px;
+  border-radius:0px;
+  box-shadow: -200px  0px 0px 200px   #E7891A;
+  padding: 0px;
+  margin: 0px;
 }
