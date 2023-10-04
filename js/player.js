@@ -71,6 +71,7 @@ const loadSong = (songsName) => {
   nameSong.innerHTML = songsName; // записывам название текущей песни
   audio.src = `./assets/audio/${songsName}.mp3`; // добавляем путь к текущей песне
   wavesurfer.load(`./assets/audio/${songsName}.mp3`); // добавляем аудиозапись для звуковой волны
+  wavesurfer.setVolume(0);
 }
 
 // при загрузке страницы для текущей аудиозаписи: 1) отобразим длительность 2) отобразим название 3) укажем путь 
@@ -182,7 +183,7 @@ playlist.addEventListener('click', chooseSong);
 
 //громкость
 const changeVolume = () => {
-  audio.volume = volumeSlider.value;
+  audio.volume = volume.value;
 }
 
 volume.addEventListener('input', changeVolume)
