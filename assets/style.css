@@ -141,18 +141,19 @@
 .audio-player__progress,
 .audio-player__progress-fill-line {
   width: 100%;
-  height: 3px;
-  border-radius: 5px;
+  height: 5px;
+  border-radius: 7px;
 }
 
 .audio-player__progress {
   background-color: #C3C3C3;
   margin-bottom: 5px;
   position: relative;
+  cursor: pointer;
 }
 
 .audio-player__progress-fill-line {
-  width: 40%;
+  width: 0;
   background-color: #E7891A;
   position: absolute;
 }

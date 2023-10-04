@@ -17,35 +17,6 @@
 
             <!-- Сюда будет добавляться список треков -->
 
-            <li class="song">
-              <div class="song__info">
-                <span class="song__name">Название 1756789087657467890-987658867890</span>
-                <span class="song__author">Исполнитель 1zdhxdngfdfngbdfzbxgncbcf</span>
-              </div>
-              <div class="song__wrapper">
-                <span class="song__duration">2:34</span>
-                <button class="song__play-button button" type="button">
-                  <svg class="song__play-icon icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                    <path d="m20.494 7.968-9.54-7A5 5 0 0 0 3 5v14a5 5 0 0 0 7.957 4.031l9.54-7a5 5 0 0 0 0-8.064Zm-1.184 6.45-9.54 7A3 3 0 0 1 5 19V5a2.948 2.948 0 0 1 1.641-2.672A3.018 3.018 0 0 1 8.006 2a2.97 2.97 0 0 1 1.764.589l9.54 7a3 3 0 0 1 0 4.836Z"/></svg>
-                  <span class="visually-hidden">Воспроизвести песню.</span>
-                </button>
-              </div>
-            </li>
-            <li class="song">
-              <div class="song__info">
-                <span class="song__name">Название 2</span>
-                <span class="song__author">Исполнитель 1</span>
-              </div>
-              <div class="song__wrapper">
-                <span class="song__duration">1:23</span>
-                <button class="song__play-button button" type="button">
-                  <svg class="song__play-icon icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                    <path d="m20.494 7.968-9.54-7A5 5 0 0 0 3 5v14a5 5 0 0 0 7.957 4.031l9.54-7a5 5 0 0 0 0-8.064Zm-1.184 6.45-9.54 7A3 3 0 0 1 5 19V5a2.948 2.948 0 0 1 1.641-2.672A3.018 3.018 0 0 1 8.006 2a2.97 2.97 0 0 1 1.764.589l9.54 7a3 3 0 0 1 0 4.836Z"/></svg>
-                  <span class="visually-hidden">Воспроизвести песню.</span>
-                </button>
-              </div>
-            </li>
-
           </ul>
         </div>
       </section>
@@ -56,28 +27,28 @@
         <div class="audio-player__container">
           <div class="audio-player__player">
             <div class="audio-player__info">
-              <span class="audio-player__name-song">Название</span>
-              <span class="audio-player__author">Автор</span>
+              <span class="audio-player__name-song"></span>
             </div>
             <div class="audio-player__progress-container">
               <div class="audio-player__progress">
                 <div class="audio-player__progress-fill-line"></div>
               </div>
               <div class="audio-player__time-container">
-                <span class="audio-player__time-start">0:00</span>
-                <span class="audio-player__time-end">2:30</span>
+                <span class="audio-player__time-start"></span>
+                <span class="audio-player__time-end"></span>
               </div>
             </div>
+            <audio class="audio-player__song" src="./assets/audio/Iamalex - Meadow (feat. Azula & Dayle).mp3"></audio>
             <div class="audio-player__buttons">
               <button class="audio-player__previous-song button" type="button">
                 <svg class="audio-player__previous-icon icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                   <path d="M17.17 24a1 1 0 0 1-.71-.29l-8.17-8.17a5 5 0 0 1 0-7.08L16.46.29a1 1 0 1 1 1.42 1.42L9.71 9.88a3 3 0 0 0 0 4.24l8.17 8.17a1 1 0 0 1 0 1.42 1 1 0 0 1-.71.29Z"/></svg>
-                <span class="visually-hidden">Предыдущая песня.</span>
+                <span class="visually-hidden">Предыдущая аудиозапись.</span>
               </button>
               <button class="audio-player__control button" type="button">
                 <svg class="audio-player__control-play icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                   <path d="m20.494 7.968-9.54-7A5 5 0 0 0 3 5v14a5 5 0 0 0 7.957 4.031l9.54-7a5 5 0 0 0 0-8.064Zm-1.184 6.45-9.54 7A3 3 0 0 1 5 19V5a2.948 2.948 0 0 1 1.641-2.672A3.018 3.018 0 0 1 8.006 2a2.97 2.97 0 0 1 1.764.589l9.54 7a3 3 0 0 1 0 4.836Z"/></svg>
-                <span class="visually-hidden">Воспроизвести песню.</span>
+                <span class="visually-hidden">Воспроизвести аудиозапись.</span>
                 <svg class="audio-player__control-pause icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                   <path d="M6.5 0A3.5 3.5 0 0 0 3 3.5v17a3.5 3.5 0 0 0 7 0v-17A3.5 3.5 0 0 0 6.5 0ZM8 20.5a1.5 1.5 0 0 1-3 0v-17a1.5 1.5 0 0 1 3 0ZM17.5 0A3.5 3.5 0 0 0 14 3.5v17a3.5 3.5 0 0 0 7 0v-17A3.5 3.5 0 0 0 17.5 0ZM19 20.5a1.5 1.5 0 0 1-3 0v-17a1.5 1.5 0 0 1 3 0Z"/></svg>
                 <span class="visually-hidden">Поставить на паузу.</span>
@@ -85,6 +56,7 @@
               <button class="audio-player__next-song button" type="button">
                 <svg class="audio-player__next-icon icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                   <path d="M7 24a1 1 0 0 1-.71-.29 1 1 0 0 1 0-1.42l8.17-8.17a3 3 0 0 0 0-4.24L6.29 1.71A1 1 0 0 1 7.71.29l8.17 8.17a5 5 0 0 1 0 7.08l-8.17 8.17A1 1 0 0 1 7 24Z"/></svg>
+                  <span class="visually-hidden">Следующая аудиозапись.</span>
               </button>
             </div>
           </div>
@@ -99,18 +71,12 @@
     <!-- шаблон строки в плейлисте -->
     <template id="song">
       <li class="song">
-        <div class="song__info">
           <span class="song__name"></span>
-          <span class="song__author"></span>
-        </div>
-        <div class="song__wrapper">
-          <span class="song__duration"></span>
           <button class="song__play-button button" type="button">
-            <svg class="song__play-icon icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+            <svg class="song__play-icon icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
               <path d="m20.494 7.968-9.54-7A5 5 0 0 0 3 5v14a5 5 0 0 0 7.957 4.031l9.54-7a5 5 0 0 0 0-8.064Zm-1.184 6.45-9.54 7A3 3 0 0 1 5 19V5a2.948 2.948 0 0 1 1.641-2.672A3.018 3.018 0 0 1 8.006 2a2.97 2.97 0 0 1 1.764.589l9.54 7a3 3 0 0 1 0 4.836Z"/></svg>
             <span class="visually-hidden">Воспроизвести песню.</span>
           </button>
-        </div>
       </li>
     </template>
 
